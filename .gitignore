@@ -1,0 +1,20 @@
+# Dữ liệu cuộc thi và test public (không đưa lên)
+data/
+public_test/
+
+# Build, model, cache (rất lớn)
+build/
+.cache/
+.colab_build/
+.kaggle_build/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Kết quả chạy: chỉ giữ các bản tóm tắt .md (errors.md, report_*.md) để rút kinh nghiệm
+runs/**
+!runs/**/
+!runs/LATEST
+!runs/*/*.md
+!runs/*/state/report_*.md
+runs/**/logs/

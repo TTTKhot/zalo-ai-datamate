@@ -1,0 +1,18 @@
+{
+  "kaggle_username": "thunhngl",
+  "code_dataset": "datamate-code",
+  "train_dataset": "thunhngl/training-data",
+  "model_source": "",
+  "kernel_slug": "datamate-v6-auto",
+  "kernel_sources": ["thunhngl/v5-test1"],
+  "extra_datasets": [],
+  "accelerator": "NvidiaTeslaT4",
+  "business_ids": [],
+  "val_frac": 0.2,
+  "val_shops": ["biz_104", "biz_106", "biz_110", "biz_114", "biz_119", "biz_126"],
+  "max_q_per_shop_eval": null,
+  "quantize_4bit": true,
+  "use_llm_mapper": true,
+  "run": {},
+  "lora": {}
+}

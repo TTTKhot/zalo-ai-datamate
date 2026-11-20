@@ -1,0 +1,14 @@
+# inference dependencies of the image (torch 2.7.1+cu128 comes from the base image)
+transformers==5.20.2
+accelerate>=1.6
+peft>=0.14
+pandas>=2.2
+numpy
+duckdb>=1.4,<2
+sqlglot==30.30.0
+openpyxl>=3.1
+python-calamine>=0.2
+scikit-learn>=1.4
+sentencepiece
+protobuf
+pillow

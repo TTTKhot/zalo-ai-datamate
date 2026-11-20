@@ -1,0 +1,1308 @@
+{
+ "rules": [
+  {
+   "section_no": 1,
+   "section": "Đơn hàng và doanh thu",
+   "industry": null,
+   "title": "Đơn tính vào doanh thu",
+   "body": "đơn **không huỷ** và **không trả hàng**. Đơn có trả hàng, **kể cả chỉ trả một phần**, là đơn trả hàng: bỏ **cả đơn**. Đơn đang giao vẫn tính",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "don tinh vao doanh thu"
+   ],
+   "key": "1||don tinh vao doanh thu",
+   "covered_by": [
+    "revenue",
+    "rules.py"
+   ]
+  },
+  {
+   "section_no": 1,
+   "section": "Đơn hàng và doanh thu",
+   "industry": null,
+   "title": "Bán được bao nhiêu tiền, thu về bao nhiêu tiền",
+   "body": "là **doanh thu** theo mục này, không phải tiền khách đã trả",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "ban tien",
+    "thu ve tien"
+   ],
+   "key": "1||ban duoc bao nhieu tien thu ve bao nhieu tien",
+   "covered_by": [
+    "revenue"
+   ]
+  },
+  {
+   "section_no": 1,
+   "section": "Đơn hàng và doanh thu",
+   "industry": null,
+   "title": "Đơn thuộc kỳ nào",
+   "body": "theo **ngày đặt**, không theo ngày giao hay ngày thu tiền",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "don thuoc"
+   ],
+   "key": "1||don thuoc ky nao",
+   "covered_by": [
+    "revenue",
+    "order_count",
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 1,
+   "section": "Đơn hàng và doanh thu",
+   "industry": null,
+   "title": "Đơn bị huỷ",
+   "body": "đơn có trạng thái huỷ. Đơn trả hàng **không** phải đơn huỷ",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "don bi huy"
+   ],
+   "key": "1||don bi huy",
+   "covered_by": [
+    "cancelled_count",
+    "rules.py"
+   ]
+  },
+  {
+   "section_no": 1,
+   "section": "Đơn hàng và doanh thu",
+   "industry": null,
+   "title": "Số đơn",
+   "body": "chỉ tính đơn không huỷ, không trả; cả khi đếm số đơn có một mặt hàng, số đơn của một khách. **Khách đã mua** trong kỳ là khách có ít nhất một đơn như vậy trong kỳ",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "so don"
+   ],
+   "key": "1||so don",
+   "covered_by": [
+    "order_count"
+   ]
+  },
+  {
+   "section_no": 1,
+   "section": "Đơn hàng và doanh thu",
+   "industry": null,
+   "title": "Doanh thu một đơn",
+   "body": "tổng **thành tiền các dòng hàng** (đã trừ giảm giá trên từng dòng). **Không** trừ giảm giá trên cả đơn (khuyến mãi theo tổng tiền đơn, voucher shop), **không** cộng thuế VAT, **không** gồm phí giao hàng. **Tiền hàng**, **tiền bán** của đơn bán cùng nghĩa với doanh thu",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "doanh thu don"
+   ],
+   "key": "1||doanh thu mot don",
+   "covered_by": [
+    "revenue",
+    "avg_order_value"
+   ]
+  },
+  {
+   "section_no": 1,
+   "section": "Đơn hàng và doanh thu",
+   "industry": null,
+   "title": "Doanh thu theo hình thức thanh toán",
+   "body": "theo hình thức **ghi trên đơn**, không theo lần trả nợ về sau: đơn ghi nợ không tính vào tiền mặt hay chuyển khoản. Đơn **COD** là hình thức riêng, không tính vào tiền mặt",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "doanh thu hinh thuc thanh toan",
+    "cod"
+   ],
+   "key": "1||doanh thu theo hinh thuc thanh toan",
+   "covered_by": [
+    "revenue"
+   ]
+  },
+  {
+   "section_no": 1,
+   "section": "Đơn hàng và doanh thu",
+   "industry": null,
+   "title": "Doanh thu theo nhóm khách",
+   "body": "nhóm theo cột nhóm khách. Đơn không ghi khách (khách vãng lai) **không thuộc nhóm nào**, kể cả nhóm `lẻ`. Tỉ trọng của nhóm chia cho doanh thu **cả shop** cùng kỳ, tính cả đơn vãng lai",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "doanh thu nhom khach"
+   ],
+   "key": "1||doanh thu theo nhom khach",
+   "covered_by": [
+    "revenue"
+   ]
+  },
+  {
+   "section_no": 1,
+   "section": "Đơn hàng và doanh thu",
+   "industry": null,
+   "title": "Tỉ lệ đơn huỷ trong kỳ",
+   "body": "phần trăm đơn huỷ trong **mọi đơn đặt trong kỳ** (theo ngày đặt, **mọi trạng thái**: cả đơn huỷ, đơn trả, đơn đang giao). Làm tròn 2 chữ số thập phân.",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "ti le don huy",
+    "moi trang thai"
+   ],
+   "key": "1||ti le don huy trong ky",
+   "covered_by": [
+    "cancel_rate"
+   ]
+  },
+  {
+   "section_no": 1,
+   "section": "Đơn hàng và doanh thu",
+   "industry": null,
+   "title": "Phần trăm thay đổi, tăng trưởng",
+   "body": "so với **kỳ trước**; giảm thì ra **số âm**",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "phan tram thay doi",
+    "tang truong"
+   ],
+   "key": "1||phan tram thay doi tang truong",
+   "covered_by": [
+    "compare"
+   ]
+  },
+  {
+   "section_no": 1,
+   "section": "Đơn hàng và doanh thu",
+   "industry": null,
+   "title": "Chênh lệch, hơn / kém, tăng / giảm bao nhiêu (số, không phải %)",
+   "body": "**kỳ hỏi − kỳ so**: ít hơn ra số âm, giữ đơn vị của số đo",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "chenh lech",
+    "hon",
+    "kem",
+    "tang",
+    "giam so",
+    "khong phai %",
+    "hoi so"
+   ],
+   "key": "1||chenh lech hon kem tang giam bao nhieu so khong phai %",
+   "covered_by": [
+    "compare"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "Ngày X, hôm nay, hôm qua",
+   "body": "hỏi số phát sinh (doanh thu, số đơn, giá bán…): chỉ **trong** ngày đó",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "hom nay",
+    "hom qua"
+   ],
+   "key": "2||ngay x hom nay hom qua",
+   "covered_by": [
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "Đến hết ngày X, tính đến hôm nay",
+   "body": "hỏi số còn lại (còn nợ, còn tồn, còn hàng…): **tình trạng lúc hết ngày đó**, tính mọi phát sinh **từ đầu dữ liệu** đến hết ngày đó; không phải kỳ **tháng này**",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "den het",
+    "tinh den hom nay"
+   ],
+   "key": "2||den het ngay x tinh den hom nay",
+   "covered_by": [
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "Từ X đến Y, nhóm X–Y",
+   "body": "gồm cả X và Y",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "tu den",
+    "nhom"
+   ],
+   "key": "2||tu x den y nhom x y",
+   "covered_by": [
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "N ngày gần nhất",
+   "body": "N ngày liền nhau **kể cả hôm nay**, ngày cuối là hôm nay",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "gan nhat"
+   ],
+   "key": "2||n ngay gan nhat",
+   "covered_by": [
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "Quá N, hơn N, trên N, dưới N",
+   "body": "**không** gồm N. **Từ N trở lên** thì gồm N",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "qua",
+    "hon",
+    "tren",
+    "duoi"
+   ],
+   "key": "2||qua n hon n tren n duoi n",
+   "covered_by": [
+    "slots.py"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "Tuần",
+   "body": "bắt đầu **thứ Hai**. **Tuần này**: từ thứ Hai của tuần chứa hôm nay đến hết hôm nay. **Tuần trước, tuần rồi**: **cả** tuần liền trước, thứ Hai đến Chủ nhật",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "nay",
+    "truoc roi"
+   ],
+   "key": "2||tuan",
+   "covered_by": [
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "Tháng M/Y",
+   "body": "cả tháng, từ ngày 1 đến hết ngày cuối tháng",
+   "kind": "row",
+   "refs": [],
+   "triggers": [],
+   "key": "2||thang m y",
+   "covered_by": [
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "Tháng này",
+   "body": "từ ngày 1 đến **hết hôm nay**. So với tháng trước thì lấy **cùng số ngày** của tháng trước: từ ngày 1 đến hết ngày trùng số với hôm nay; tháng trước không có ngày đó thì đến hết tháng trước",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "nay"
+   ],
+   "key": "2||thang nay",
+   "covered_by": [
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "Từ đầu năm, từ đầu năm tới nay",
+   "body": "từ 01/01 của năm nay đến **hết hôm nay**",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "tu dau",
+    "tu dau toi nay"
+   ],
+   "key": "2||tu dau nam tu dau nam toi nay",
+   "covered_by": [
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "Tháng M, quý Q không ghi năm",
+   "body": "của **năm nay** nếu không sau hôm nay; sau hôm nay thì của **năm trước**. Quý theo dương lịch, mỗi quý 3 tháng tính từ tháng 1",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "khong ghi"
+   ],
+   "key": "2||thang m quy q khong ghi nam",
+   "covered_by": [
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "Tết năm Y, dịp Tết, mùa Tết",
+   "body": "từ ngày dương của **23 tháng Chạp** (năm âm Y − 1) đến **hết** ngày dương của **mùng 10 tháng Giêng** (năm âm Y). **So với trước Tết** = cùng số ngày ngay trước 23 tháng Chạp. Tra lịch âm trong `calendar.csv` cùng thư mục.",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "tet",
+    "dip tet",
+    "mua tet",
+    "so voi truoc tet"
+   ],
+   "key": "2||tet nam y dip tet mua tet",
+   "covered_by": [
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 2,
+   "section": "Thời gian",
+   "industry": null,
+   "title": "Ca sáng, ca chiều",
+   "body": "theo giờ tạo đơn: ca sáng 06:00–13:59, ca chiều 14:00–21:59. So ca chiều với ca sáng: mốc là **ca sáng**",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "ca sang",
+    "ca chieu"
+   ],
+   "key": "2||ca sang ca chieu",
+   "covered_by": [
+    "shift filter"
+   ]
+  },
+  {
+   "section_no": 3,
+   "section": "Xếp hạng",
+   "industry": null,
+   "title": "Mặt hàng",
+   "body": "**Món**, hàng, sản phẩm cùng nghĩa với mặt hàng. Dòng **Phí phục vụ** không phải mặt hàng: không xếp hạng, không đếm. Vẫn tính vào doanh thu, kể cả mẫu số tỉ trọng nhóm hàng",
+   "kind": "row",
+   "refs": [],
+   "triggers": [],
+   "key": "3||mat hang",
+   "covered_by": [
+    "rules.py"
+   ]
+  },
+  {
+   "section_no": 3,
+   "section": "Xếp hạng",
+   "industry": null,
+   "title": "Nhóm hàng",
+   "body": "theo cột nhóm hàng, đúng tên nhóm câu hỏi nêu; không gộp nhóm khác tên dù tên gần nhau",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "nhom hang"
+   ],
+   "key": "3||nhom hang",
+   "covered_by": [
+    "group filter"
+   ]
+  },
+  {
+   "section_no": 3,
+   "section": "Xếp hạng",
+   "industry": null,
+   "title": "Bán chạy",
+   "body": "theo **số lượng quy về đơn vị cơ bản**, không theo số dòng hay số tiền; bỏ đơn huỷ, trả. Mặt hàng khác đơn vị cơ bản vẫn xếp chung theo số đó. **Bán nhiều nhất**, **bán được nhiều nhất**, **hot nhất** cùng nghĩa với **bán chạy nhất**",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "ban chay",
+    "ban nhieu nhat",
+    "hot nhat"
+   ],
+   "key": "3||ban chay",
+   "covered_by": [
+    "top_products"
+   ]
+  },
+  {
+   "section_no": 3,
+   "section": "Xếp hạng",
+   "industry": null,
+   "title": "Bán được bao nhiêu <đơn vị>",
+   "body": "cộng số lượng quy về đơn vị cơ bản của các mặt hàng **có đơn vị cơ bản là <đơn vị>**, kể cả dòng bán theo đơn vị lớn; mặt hàng có đơn vị cơ bản khác không tính",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "ban"
+   ],
+   "key": "3||ban duoc bao nhieu don vi",
+   "covered_by": [
+    "quantity"
+   ]
+  },
+  {
+   "section_no": 3,
+   "section": "Xếp hạng",
+   "industry": null,
+   "title": "Hàng lời nhất",
+   "body": "theo **tổng lãi gộp** của mặt hàng (§5)",
+   "kind": "row",
+   "refs": [
+    5
+   ],
+   "triggers": [
+    "hang loi nhat"
+   ],
+   "key": "3||hang loi nhat",
+   "covered_by": [
+    "top_products",
+    "gross_profit"
+   ]
+  },
+  {
+   "section_no": 3,
+   "section": "Xếp hạng",
+   "industry": null,
+   "title": "Xác định khách",
+   "body": "Shop có mã khách: mỗi **mã khách** là một khách, hai mã trùng tên là hai khách; đơn không ghi mã (**khách lẻ**) không phải khách, không đếm và không xếp hạng. Shop không có mã khách: xác định khách theo **tên ghi trên đơn**: hai tên **chỉ khác cách viết** là cùng một khách, hai tên **khác chữ hoặc khác số** là hai khách; đơn **khách lẻ** không tính. Khách mua **nhiều tiền** nhất xếp theo doanh thu (§1).",
+   "kind": "row",
+   "refs": [
+    1
+   ],
+   "triggers": [
+    "xac dinh khach",
+    "ma khach",
+    "ten ghi tren don",
+    "chi khac cach viet",
+    "khac chu hoac khac so"
+   ],
+   "key": "3||xac dinh khach",
+   "covered_by": [
+    "rules.py",
+    "top_customers"
+   ]
+  },
+  {
+   "section_no": 3,
+   "section": "Xếp hạng",
+   "industry": null,
+   "title": "Nhân viên bán giỏi nhất",
+   "body": "theo **doanh thu** (§1) của nhân viên trong kỳ, không theo số đơn",
+   "kind": "row",
+   "refs": [
+    1
+   ],
+   "triggers": [
+    "nhan vien ban gioi nhat"
+   ],
+   "key": "3||nhan vien ban gioi nhat",
+   "covered_by": []
+  },
+  {
+   "section_no": 3,
+   "section": "Xếp hạng",
+   "industry": null,
+   "title": "Giá trị trung bình một đơn",
+   "body": "làm tròn về đồng, nửa đồng làm tròn lên",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "gia tri trung binh don"
+   ],
+   "key": "3||gia tri trung binh mot don",
+   "covered_by": [
+    "avg_order_value"
+   ]
+  },
+  {
+   "section_no": 4,
+   "section": "Công nợ",
+   "industry": null,
+   "title": "Đơn được tính vào nợ",
+   "body": "đơn không huỷ; **đơn trả hàng vẫn tính** nếu còn nợ",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "don tinh vao no"
+   ],
+   "key": "4||don duoc tinh vao no",
+   "covered_by": [
+    "debt_total"
+   ]
+  },
+  {
+   "section_no": 4,
+   "section": "Công nợ",
+   "industry": null,
+   "title": "Nợ một đơn tại ngày X",
+   "body": "phần chưa trả của **tổng đơn** (số khách phải trả cả đơn: đã trừ giảm giá trên cả đơn, **gồm phí giao**), tính các khoản trả đến hết ngày X. Còn nợ = cộng các đơn **còn nợ > 0**",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "no don tai"
+   ],
+   "key": "4||no mot don tai ngay x",
+   "covered_by": [
+    "debt_total",
+    "debt_table"
+   ]
+  },
+  {
+   "section_no": 4,
+   "section": "Công nợ",
+   "industry": null,
+   "title": "Nợ theo khách",
+   "body": "xác định khách như §3. Đơn **khách lẻ** vẫn tính vào **tổng nợ**, nhưng không có dòng trong bảng nợ theo khách",
+   "kind": "row",
+   "refs": [
+    3
+   ],
+   "triggers": [
+    "no khach"
+   ],
+   "key": "4||no theo khach",
+   "covered_by": [
+    "debt_table",
+    "debtor_count"
+   ]
+  },
+  {
+   "section_no": 4,
+   "section": "Công nợ",
+   "industry": null,
+   "title": "Đơn COD, đơn bán qua sàn TMĐT",
+   "body": "**không phải khách nợ**, kể cả khi chưa thu được tiền; bỏ khỏi công nợ và tuổi nợ",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "don cod",
+    "don ban qua san tmdt"
+   ],
+   "key": "4||don cod don ban qua san tmdt",
+   "covered_by": [
+    "debt_total",
+    "rules.py"
+   ]
+  },
+  {
+   "section_no": 4,
+   "section": "Công nợ",
+   "industry": null,
+   "title": "Tuổi nợ",
+   "body": "số ngày tính từ **ngày đặt**, không từ hạn thanh toán. Đơn đặt hôm nay có tuổi nợ **0** ngày, đơn đặt hôm qua **1** ngày",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "tuoi no"
+   ],
+   "key": "4||tuoi no",
+   "covered_by": [
+    "debt_aging"
+   ]
+  },
+  {
+   "section_no": 4,
+   "section": "Công nợ",
+   "industry": null,
+   "title": "Nợ thêm, trả nợ, thu nợ trong kỳ",
+   "body": "chỉ đơn **ghi nợ**, không huỷ. **Nợ thêm**: phần tổng đơn chưa trả ngay trong ngày mua, của đơn đặt trong kỳ. **Trả nợ / thu nợ**: các khoản trả **sau ngày mua** có ngày trả trong kỳ, của mọi đơn ghi nợ (kể cả đơn kỳ trước, đơn trả hàng). Tiền trả cùng ngày mua là trả lúc mua. Hoàn tiền trả hàng không trừ",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "no them",
+    "tra no",
+    "thu no",
+    "tra no thu no"
+   ],
+   "key": "4||no them tra no thu no trong ky",
+   "covered_by": [
+    "new_debt_and_repaid"
+   ]
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Tiền nhập hàng trong kỳ",
+   "body": "tổng tiền các phiếu nhập có **ngày phiếu** trong kỳ, bỏ phiếu huỷ. Phiếu, dòng ghi **nhập đầu kỳ** là phiếu nhập như mọi phiếu khác: có ngày phiếu trong kỳ thì tính. Nhà cung cấp nhập nhiều nhất = nhà cung cấp có tiền nhập cao nhất",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "tien nhap hang",
+    "nhap dau"
+   ],
+   "key": "5||tien nhap hang trong ky",
+   "covered_by": [
+    "purchase_total"
+   ]
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Nhập trừ bán, chênh nhập và bán",
+   "body": "phần **bán** là số lượng của đơn tính vào doanh thu (§1), quy về cùng đơn vị với phần nhập",
+   "kind": "row",
+   "refs": [
+    1
+   ],
+   "triggers": [
+    "nhap tru ban",
+    "chenh nhap ban",
+    "ban"
+   ],
+   "key": "5||nhap tru ban chenh nhap va ban",
+   "covered_by": [
+    "purchase_minus_sales"
+   ]
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Giá nhập bình quân một mặt hàng trong tháng",
+   "body": "bình quân **theo số lượng nhập**, **không** phải trung bình cộng các mức giá nhập; theo đơn vị nhập, các phiếu có ngày phiếu trong tháng, bỏ phiếu huỷ",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "gia nhap binh quan"
+   ],
+   "key": "5||gia nhap binh quan mot mat hang trong thang",
+   "covered_by": [
+    "avg_purchase_price"
+   ]
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Tồn theo đơn vị lớn",
+   "body": "list 2 số `[số đơn vị lớn nguyên, số đơn vị cơ bản lẻ]`; không có phần lẻ thì số thứ hai là 0. Hàng nhiều cấp: phần lẻ vẫn tính bằng đơn vị cơ bản, không đổi sang đơn vị ở giữa",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "ton don vi lon"
+   ],
+   "key": "5||ton theo don vi lon",
+   "covered_by": [
+    "stock"
+   ]
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Giá trị hàng tồn kho",
+   "body": "tồn **hết hôm nay** của từng mặt hàng nhân **giá vốn một đơn vị cơ bản ghi trong danh mục hàng**; chỉ tính hàng còn tồn",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "gia tri hang ton kho"
+   ],
+   "key": "5||gia tri hang ton kho",
+   "covered_by": [
+    "stock_value"
+   ]
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Mặt hàng hết hàng cuối ngày",
+   "body": "mặt hàng **mua về để bán** (không tính món pha chế, chế biến tại chỗ) mà lúc **hết ngày** đó tồn kho bằng 0; hết giữa ngày nhưng nhập thêm trước cuối ngày thì không tính",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "het hang cuoi"
+   ],
+   "key": "5||mat hang het hang cuoi ngay",
+   "covered_by": []
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Mặt hàng không bán được trong kỳ (ế)",
+   "body": "mặt hàng cửa hàng **đã từng bán trước kỳ** (có trong đơn §1, không tính đơn huỷ, đơn trả) nhưng trong kỳ không có đơn nào (§1) mua mặt hàng đó",
+   "kind": "row",
+   "refs": [
+    1
+   ],
+   "triggers": [
+    "khong ban"
+   ],
+   "key": "5||mat hang khong ban duoc trong ky e",
+   "covered_by": [
+    "unsold_products"
+   ]
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Giá bán X ngày D",
+   "body": "đơn giá ghi trên dòng bán X của các đơn đặt ngày D, cho **một đơn vị cơ bản**, **trước** chiết khấu dòng; tính cả dòng của đơn huỷ, đơn trả",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "gia ban"
+   ],
+   "key": "5||gia ban x ngay d",
+   "covered_by": [
+    "unit_price"
+   ]
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Hiệu ứng tăng giá",
+   "body": "lần tăng giá = ngày D giá mới cao hơn giá liền trước (theo bảng giá); tăng lên cùng một giá nhiều lần thì lấy lần đầu. So số lượng (đơn vị cơ bản) **N ngày kể từ D** (tính cả D) với **N ngày ngay trước D**; cả hai khoảng bỏ đơn huỷ và đơn trả",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "hieu ung tang gia"
+   ],
+   "key": "5||hieu ung tang gia",
+   "covered_by": [
+    "price_effect"
+   ]
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Giá vốn",
+   "body": "bình quân gia quyền theo lô nhập, tại thời điểm bán; không theo FIFO, không theo giá nhập lần cuối",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "gia von"
+   ],
+   "key": "5||gia von",
+   "covered_by": [
+    "gross_profit"
+   ]
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Lãi gộp",
+   "body": "doanh thu (§1) trừ giá vốn của hàng đã bán. Giá vốn của mỗi dòng bán bằng số lượng nhân với **giá vốn ghi trên dòng bán** (cho **một đơn vị bán**, cùng đơn vị với đơn giá). Không tự tính lại giá vốn từ phiếu nhập hay từ lô",
+   "kind": "row",
+   "refs": [
+    1
+   ],
+   "triggers": [
+    "lai gop"
+   ],
+   "key": "5||lai gop",
+   "covered_by": [
+    "gross_profit"
+   ]
+  },
+  {
+   "section_no": 5,
+   "section": "Kho, nhập hàng, giá vốn",
+   "industry": null,
+   "title": "Lãi ròng một tháng",
+   "body": "lãi gộp của tháng trừ **mọi khoản** ghi trong sổ chi phí của tháng đó, kể cả sửa chữa, thay thiết bị",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "lai rong"
+   ],
+   "key": "5||lai rong mot thang",
+   "covered_by": [
+    "net_profit"
+   ]
+  },
+  {
+   "section_no": 6,
+   "section": "Theo ngành",
+   "industry": "Cà phê",
+   "title": "Size M, size L",
+   "body": "món có tên kết thúc bằng `(M)` hoặc `(L)`, **không phân biệt hoa thường**",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "size",
+    "size l"
+   ],
+   "key": "6|ca phe|size m size l",
+   "covered_by": [
+    "size filter"
+   ]
+  },
+  {
+   "section_no": 6,
+   "section": "Theo ngành",
+   "industry": "Nhà thuốc",
+   "title": "Thuốc kê đơn",
+   "body": "**Thuốc kê đơn** = sản phẩm ghi kê đơn trong danh mục thuốc; mọi sản phẩm còn lại là **hàng không kê đơn**. Tỉ lệ kê đơn tính theo doanh thu",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "thuoc ke don"
+   ],
+   "key": "6|nha thuoc|thuoc ke don",
+   "covered_by": [
+    "prescription filter"
+   ]
+  },
+  {
+   "section_no": 6,
+   "section": "Theo ngành",
+   "industry": "Nhà thuốc",
+   "title": "Hàng hết hạn trong N ngày tới",
+   "body": "tính tại hôm nay D: lô còn tồn có hạn dùng từ D đến hết ngày D + N. **Tiền vốn** là giá trị phần **còn tồn** của lô, theo giá nhập của chính lô đó quy về đơn vị cơ bản, không theo giá vốn bình quân",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "hang het han toi",
+    "tien von"
+   ],
+   "key": "6|nha thuoc|hang het han trong n ngay toi",
+   "covered_by": [
+    "expiring"
+   ]
+  },
+  {
+   "section_no": 6,
+   "section": "Theo ngành",
+   "industry": "Nhà thuốc",
+   "title": "Doanh thu theo hoạt chất",
+   "body": "doanh thu (§1) các thuốc có hoạt chất ghi **đúng như vậy** trong danh mục thuốc. Thuốc phối hợp nhiều hoạt chất là **một loại riêng**, không tính vào từng hoạt chất trong đó",
+   "kind": "row",
+   "refs": [
+    1
+   ],
+   "triggers": [
+    "doanh thu hoat chat"
+   ],
+   "key": "6|nha thuoc|doanh thu theo hoat chat",
+   "covered_by": [
+    "active_ingredient filter"
+   ]
+  },
+  {
+   "section_no": 6,
+   "section": "Theo ngành",
+   "industry": "Nhà thuốc",
+   "title": "Lô gần hết hạn nhất của một thuốc",
+   "body": "trong các lô còn tồn chưa quá hạn tại hôm nay, lô có hạn sớm nhất",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "lo gan het han nhat thuoc"
+   ],
+   "key": "6|nha thuoc|lo gan het han nhat cua mot thuoc",
+   "covered_by": []
+  },
+  {
+   "section_no": 6,
+   "section": "Theo ngành",
+   "industry": "Vật liệu xây dựng",
+   "title": "Giao nhiều đợt",
+   "body": "**Số đợt giao trong tháng X** = số đợt có ngày giao trong tháng X; **mỗi đợt của mỗi đơn tính một đợt**, kể cả đợt của đơn sau đó trả hàng",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "giao nhieu dot",
+    "so dot giao"
+   ],
+   "key": "6|vat lieu xay dung|giao nhieu dot",
+   "covered_by": []
+  },
+  {
+   "section_no": 7,
+   "section": "Không trả lời được",
+   "industry": null,
+   "title": "",
+   "body": "Thông tin file không ghi thì không suy ra từ cột khác, trừ khi rulebook ghi cách lấy.",
+   "kind": "bullet",
+   "refs": [],
+   "triggers": [],
+   "key": "7||thong tin file khong ghi thi khong suy ra tu",
+   "covered_by": [
+    "metrics Unanswerable"
+   ]
+  },
+  {
+   "section_no": 7,
+   "section": "Không trả lời được",
+   "industry": null,
+   "title": "",
+   "body": "Không có dữ liệu khác với bằng 0: kỳ nằm **hoàn toàn** ngoài khoảng ngày có dữ liệu của shop, hoặc shop không ghi loại thông tin câu hỏi cần, thì không trả lời được, không phải 0.",
+   "kind": "bullet",
+   "refs": [],
+   "triggers": [],
+   "key": "7||khong co du lieu khac voi bang 0 ky nam",
+   "covered_by": [
+    "metrics Unanswerable"
+   ]
+  },
+  {
+   "section_no": 7,
+   "section": "Không trả lời được",
+   "industry": null,
+   "title": "",
+   "body": "Kỳ chỉ có một phần nằm trong khoảng ngày có dữ liệu thì tính trên phần có dữ liệu.",
+   "kind": "bullet",
+   "refs": [],
+   "triggers": [],
+   "key": "7||ky chi co mot phan nam trong khoang ngay co",
+   "covered_by": [
+    "periods.py+timex.py"
+   ]
+  },
+  {
+   "section_no": 8,
+   "section": "Cách ghi trong file",
+   "industry": null,
+   "title": "Tên gọi, nhãn",
+   "body": "các tên cùng chỉ một thứ, trong file hay trong câu hỏi, là cùng một thứ. File có mã thì theo mã",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "ten goi",
+    "nhan"
+   ],
+   "key": "8||ten goi nhan",
+   "covered_by": [
+    "rules.py"
+   ]
+  },
+  {
+   "section_no": 8,
+   "section": "Cách ghi trong file",
+   "industry": null,
+   "title": "Ô để trống ở các dòng sau của cùng một nhóm dòng",
+   "body": "giống ô đó ở dòng đầu nhóm: khách, ghi chú, trạng thái của đơn áp cho mọi dòng của đơn. Không phải thiếu dữ liệu, không có nghĩa là khách lẻ hay đơn hoàn thành",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "o de o dong sau cung nhom dong"
+   ],
+   "key": "8||o de trong o cac dong sau cua cung mot nhom dong",
+   "covered_by": [
+    "rules.py"
+   ]
+  },
+  {
+   "section_no": 8,
+   "section": "Cách ghi trong file",
+   "industry": null,
+   "title": "Trạng thái đơn",
+   "body": "mỗi đơn có đúng một trong bốn trạng thái: **hoàn thành**, **huỷ**, **trả hàng**, **đang giao**",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "trang thai don"
+   ],
+   "key": "8||trang thai don",
+   "covered_by": [
+    "rules.py"
+   ]
+  },
+  {
+   "section_no": 8,
+   "section": "Cách ghi trong file",
+   "industry": null,
+   "title": "Hai dòng của **cùng một đơn** giống nhau ở mọi ô",
+   "body": "lỗi xuất file, tính một lần. Hai dòng giống nhau của hai đơn khác nhau là hai lần bán, tính cả hai",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "hai dong cung don giong nhau o moi o"
+   ],
+   "key": "8||hai dong cua cung mot don giong nhau o moi o",
+   "covered_by": [
+    "rules.py"
+   ]
+  },
+  {
+   "section_no": 8,
+   "section": "Cách ghi trong file",
+   "industry": null,
+   "title": "Bảng không ghi theo đơn",
+   "body": "mỗi dòng là một lần ghi; hai dòng giống nhau trong cùng file vẫn tính cả hai",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "bang khong ghi don"
+   ],
+   "key": "8||bang khong ghi theo don",
+   "covered_by": [
+    "rules.py"
+   ]
+  },
+  {
+   "section_no": 8,
+   "section": "Cách ghi trong file",
+   "industry": null,
+   "title": "Ngày không ghi năm",
+   "body": "năm của sheet chứa dòng đó",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "khong ghi"
+   ],
+   "key": "8||ngay khong ghi nam",
+   "covered_by": [
+    "values.py"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "number",
+   "body": "JSON number, không đơn vị, không dấu phân cách nghìn. Tiền là số nguyên VND | `4820000`, `18.6` | `\"4,82 triệu\"`, `\"4.820.000\"`, `\"4820K\"`, `\"4820000\"`",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "number"
+   ],
+   "key": "9||number",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "percent",
+   "body": "JSON number là **số phần trăm**: 12,4 % ghi `12.4`, không kèm ký hiệu % | `12.4` | `\"12,4%\"`, `0.124`",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "percent",
+    "so phan tram"
+   ],
+   "key": "9||percent",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "date",
+   "body": "`\"YYYY-MM-DD\"`; câu hỏi theo tháng: `\"YYYY-MM\"` | `\"2026-08-15\"`, `\"2025-09\"` | `\"15/08/2026\"`, `\"tháng 9/2025\"`",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "date"
+   ],
+   "key": "9||date",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "boolean",
+   "body": "`true` / `false` | `true` | `\"có\"`, `1`",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "boolean"
+   ],
+   "key": "9||boolean",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "string",
+   "body": "tên như trong dữ liệu, đủ dấu tiếng Việt | `\"Sting dâu 330ml\"` | `\"Sting dầu 330ml\"` (sai dấu, file không có cách viết này), `[\"Sting dâu 330ml\"]`",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "string"
+   ],
+   "key": "9||string",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "list",
+   "body": "mảng JSON, có thứ tự; một phần tử vẫn là mảng | `[\"Cà phê sữa\"]`, `[3, 10]` | `\"Cà phê sữa, Bạc xỉu\"`, `\"3 thùng 10 chai\"`",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "list"
+   ],
+   "key": "9||list",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "table",
+   "body": "`{\"columns\": [...], \"rows\": [[...], ...]}`, ô số là JSON number | `{\"columns\": [\"khach_hang\", \"so_tien_no\"], \"rows\": [[\"Chị Lan\", 3200000]]}` | ô `\"3.200.000đ\"`",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "table"
+   ],
+   "key": "9||table",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "unanswerable",
+   "body": "`{\"type\": \"unanswerable\", \"reason\": \"...\"}`",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "unanswerable"
+   ],
+   "key": "9||unanswerable",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "",
+   "body": "**Số, phần trăm:** khớp tuyệt đối. Tiền đúng từng đồng, số đếm đúng từng đơn vị, phần trăm đúng 2 chữ số thập phân. Chỉ bỏ qua sai số dấu phẩy động.",
+   "kind": "bullet",
+   "refs": [],
+   "triggers": [],
+   "key": "9||so phan tram khop tuyet doi tien dung tung dong",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "",
+   "body": "**Làm tròn:** tiền ra số lẻ làm tròn về đồng; trung bình của một khoản tiền cũng là tiền, làm tròn về đồng. Phần trăm và số trung bình khác làm tròn 2 chữ số thập phân, trừ khi một luật khác trong rulebook ghi khác.",
+   "kind": "bullet",
+   "refs": [],
+   "triggers": [],
+   "key": "9||lam tron tien ra so le lam tron ve dong",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "",
+   "body": "**Chuỗi:** không phân biệt hoa thường, khoảng trắng, dấu câu. Nhận **mọi cách viết** tên có trong file của shop, hoặc **mã**. Tên khách chép kèm số điện thoại như trong file cũng được nhận. Ngoài các cách viết đó, dấu tiếng Việt phải đúng.",
+   "kind": "bullet",
+   "refs": [],
+   "triggers": [],
+   "key": "9||chuoi khong phan biet hoa thuong khoang trang dau cau",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "",
+   "body": "**Danh sách:** đúng cả tập và thứ tự. Top k xếp theo tiêu chí câu hỏi, giảm dần. Câu \"liệt kê\": có số đo thì số đo giảm dần, cùng số đo thì theo **mã** tăng dần; liệt kê hàng theo hạn dùng thì hạn sớm nhất của mặt hàng trước, cùng hạn thì theo mã; còn lại (chỉ lọc theo điều kiện, không có số đo) theo mã tăng dần.",
+   "kind": "bullet",
+   "refs": [],
+   "triggers": [],
+   "key": "9||danh sach dung ca tap va thu tu top k",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "",
+   "body": "**Bằng nhau:** hai đối tượng bằng nhau ở tiêu chí câu hỏi thì xếp theo mã tăng dần (không có mã thì theo tên). Câu hỏi một đối tượng lấy đối tượng đứng đầu theo thứ tự đó.",
+   "kind": "bullet",
+   "refs": [],
+   "triggers": [],
+   "key": "9||bang nhau hai doi tuong bang nhau o tieu chi",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 9,
+   "section": "Đáp án và chấm điểm",
+   "industry": null,
+   "title": "",
+   "body": "**Bảng:** mỗi dòng một đối tượng; cột **đầu** là tên đối tượng, các cột **sau** là số đo theo **đúng thứ tự câu hỏi nêu**. Cột so theo tên; tên không khớp thì so theo vị trí, nên ghi đúng thứ tự cột. Thứ tự các dòng không ảnh hưởng kết quả chấm.",
+   "kind": "bullet",
+   "refs": [],
+   "triggers": [
+    "dau",
+    "sau"
+   ],
+   "key": "9||bang moi dong mot doi tuong cot dau la ten",
+   "covered_by": [
+    "scoring/format"
+   ]
+  },
+  {
+   "section_no": 10,
+   "section": "Từ ngữ",
+   "industry": null,
+   "title": "Đơn vị cơ bản, đơn vị lớn",
+   "body": "mỗi mặt hàng có một **đơn vị cơ bản** (đơn vị nhỏ nhất shop đếm) và có thể có **đơn vị lớn**. Hệ số quy đổi khác nhau theo shop và theo mặt hàng, luôn đọc ở bảng quy đổi hoặc README của shop; đơn vị không có dòng quy đổi nào là đơn vị cơ bản, hệ số 1",
+   "kind": "row",
+   "refs": [],
+   "triggers": [
+    "don vi ban",
+    "don vi lon"
+   ],
+   "key": "10||don vi co ban don vi lon",
+   "covered_by": [
+    "rules.py"
+   ]
+  }
+ ]
+}

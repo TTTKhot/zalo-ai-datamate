@@ -41,7 +41,8 @@ CONFIG_CELL_MARK = 'CẤU HÌNH'
 SCALAR_VARS = {'business_ids': 'BUSINESS_IDS', 'val_frac': 'VAL_FRAC', 'val_shops': 'VAL_SHOPS',
                'max_q_per_shop_eval': 'MAX_Q_PER_SHOP_EVAL', 'quantize_4bit': 'QUANTIZE_4BIT',
                'use_llm_mapper': 'USE_LLM_MAPPER', 'hf_model_id': 'HF_MODEL_ID',
-               'eval_pick': 'EVAL_PICK', 'baseline_sql': 'BASELINE_SQL', 'public_shops': 'PUBLIC_SHOPS'}
+               'eval_pick': 'EVAL_PICK', 'baseline_sql': 'BASELINE_SQL', 'public_shops': 'PUBLIC_SHOPS',
+               'parallel_gpus': 'PARALLEL_GPUS'}
 DICT_VARS = {'run': 'RUN', 'lora': 'LORA', 'sqlvote': 'SQLVOTE'}
 # output files worth downloading (paths relative to /kaggle/working); everything else (Qwen weights,
 # cache, code copy, datamate_submit/) stays on Kaggle
@@ -251,7 +252,10 @@ def main():
                          '→ public_submission.jsonl; kèm --step public_sql=1 nếu muốn đường SQL')
     ap.add_argument('--public-shops', nargs='*', help='PUBLIC_SHOPS: chỉ các shop này của bộ test')
     ap.add_argument('--fp16', action='store_true', help='QUANTIZE_4BIT=False: Qwen fp16 như trong Docker image (4B vừa 1 T4)')
-    ap.add_argument('--kernel', help='kernel_slug khác config (chạy song song, không ghi đè output kernel đang chạy)')
+    ap.add_argument('--one-process', action='store_true',
+                    help='PARALLEL_GPUS=False: một tiến trình predict thấy cả 2 GPU, Qwen chia qua 2 T4 (device_map=auto, '
+                         '~29 GB như 5090 32 GB) - tránh OOM của mapper LLM trên 1 T4 16 GB (private 20/11), chậm ~2 lần')
+    ap.add_argument('--kernel',help='kernel_slug khác config (chạy song song, không ghi đè output kernel đang chạy)')
     ap.add_argument('--dataset', nargs='*', help='thêm dataset Kaggle vào Add Input, vd thunhngl/datamate-lora-run7 '
                                                  '(kèm --step public_lora=1 để bộ test dùng adapter đó)')
     ap.add_argument('--env', nargs='*', default=[], metavar='KEY=VAL',
@@ -263,6 +267,8 @@ def main():
         cfg['kernel_slug'] = a.kernel
     if a.fp16:
         cfg['quantize_4bit'] = False
+    if a.one_process:
+        cfg['parallel_gpus'] = False
     if a.env:
         cfg['_env'] = dict(kv.split('=', 1) for kv in a.env)
     if a.public:

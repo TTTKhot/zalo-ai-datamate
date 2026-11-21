@@ -289,3 +289,18 @@ Code 05h45 (sửa trạng thái + cách viết tháng) theo tham chiếu ChatGPT
 - Sửa lớp numword: `normalize.count_words` — số 2–10 viết bằng chữ, đúng dấu hoặc không dấu, đứng trước danh từ đếm
   (khách, đơn, ngày, tháng, mặt hàng…) → chữ số; giữ "bà", "năm tháng/tuần", "một", "sau". 24 shop scripted 2096 → 2096
   (không đổi), numword scripted 25% → 71,5% (phần còn lại tầng scripted). Chưa đo lại trên Qwen. pytest 44 qua.
+
+## 20–21/11 — Private test (500 câu, 14 shop pvt_*) chạy bằng code Docker nộp cuối (ban2, 16/11 19:49, MD5 9f79…)
+- Code `datamate/` = `build/docker_context/src` (diff rỗng); cấu hình như `predict.sh`: Qwen3.5-4B fp16, không LoRA/SQL/
+  XLM-R/calibration, cổng rulebook tắt; dữ liệu/`questions.jsonl`/`rulebook.md`/`calendar.csv` của private (dataset riêng
+  tư `thunhngl/datamate-private-test`). Guard của `launch.apply_guards` áp ở local (script kiểm bằng public ban2: khớp
+  1000/1000 với `24_kaggle_that_code_ban2.jsonl`).
+- Lần 1 `runs/20261120-2231` (kernel `datamate-private-final`, 2 tiến trình × 1 T4, 39 phút): mapper LLM OOM ở 6/14 shop.
+- Lần 2 `runs/20261121-0320` (kernel `datamate-private-2gpu`, cờ mới `kaggle_cycle.py --one-process`: 1 tiến trình,
+  Qwen chia qua 2 T4, 75,6 phút): còn OOM ở pvt_012 (xin 7,8 GB), pvt_015 (14 GB), pvt_019 (37 GB). Trên 5090 (32 GB)
+  hai shop đầu sẽ không OOM → còn lệch so với Docker thật ở 2 shop; pvt_019 OOM cả trên 5090.
+- Thô: 354 abstain / 129 unanswerable / 17 đáp án; sau guard **500/500 abstain** (9 shop bị chặn cả shop vì > 20%
+  unanswerable). Cả hai lần đều ra 500 abstain. File: `runs/20261121-0320/nop/private_submission.jsonl`.
+- Lý do (chưa sửa, chỉ ghi nhận): private khác kiểu train — sổ chi tiêu gia đình (sao kê ngân hàng, ví điện tử, tiền
+  mừng), đơn sàn TMĐT, nhiều shop không có bảng bán; `KeyError('purchase_date')` (metrics.py) làm sập pvt_006, pvt_010;
+  rulebook private viết lại nhiều điều (vd đơn trả hàng VẪN tính doanh thu; kỳ đến hôm nay dừng ở hết hôm qua).
